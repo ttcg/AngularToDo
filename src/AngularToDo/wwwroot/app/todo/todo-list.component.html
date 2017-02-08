@@ -1,0 +1,23 @@
+<h1>Todo List</h1>
+<a [routerLink]="['/todo', 'add']">Add New Item</a>
+
+<table class="table table-condensed table-striped col-md-6">
+    <thead>
+        <tr>
+            <th class="col-md-8">Description</th>
+            <th class="col-md-4"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todo of todoItems">
+            <td>{{todo.description}}</td>
+            <td><a (click)="SelectTodoItem(todo)" style="cursor: pointer;">Select</a> | <a [routerLink]="['/todo', todo.todoId]">Edit</a></td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="selectedItem">
+    <h2>
+        {{selectedItem.description | uppercase}} is selected.
+    </h2>
+    <button (click)="gotoDetail()">View Details</button>
+</div>
