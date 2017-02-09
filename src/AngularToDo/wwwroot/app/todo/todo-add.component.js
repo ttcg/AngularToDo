@@ -22,13 +22,21 @@ var TodoAddComponent = (function () {
     }
     TodoAddComponent.prototype.AddItem = function () {
         this.todoModel.description = this.todoModel.description.trim();
-        this.todoModel.todoId = Math.floor(Math.random() * 100); // generate randomID
         if (!this.todoModel.description) {
+            this.Message = "Description must not be blank.";
+            this.MessageType = 2;
             return;
         }
-        this._todoService.addNewTodo(this.todoModel);
-        this.Message = "New Item has been added";
-        this.MessageType = 1;
+        this.todoModel.todoId = Math.floor(Math.random() * 100); // generate randomID
+        var result = this._todoService.addNewTodo(this.todoModel);
+        if (result > 0) {
+            this.Message = "New Item has been added";
+            this.MessageType = 1;
+        }
+        else {
+            this.Message = "Error occured!  Try again.";
+            this.MessageType = 2;
+        }
     };
     TodoAddComponent = __decorate([
         core_1.Component({

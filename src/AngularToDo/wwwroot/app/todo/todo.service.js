@@ -9,41 +9,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 require('rxjs/add/observable/of');
 var TodoItems = [
-    { todoId: 11, description: 'Mr. Nice' },
-    { todoId: 12, description: 'Narco' },
-    { todoId: 13, description: 'Bombasto' }
+    { todoId: 11, description: 'Silencer' },
+    { todoId: 12, description: 'Centaur Warrunner' },
+    { todoId: 13, description: 'Lycanthrope' },
+    { todoId: 14, description: 'Sniper' },
+    { todoId: 15, description: 'Lone Druid' }
 ];
 var TodoService = (function () {
-    function TodoService(_http) {
-        this._http = _http;
-        this._serviceURL = 'api/todos.json';
+    function TodoService() {
     }
     TodoService.prototype.getTodoItems = function () {
-        //return this._http.get(this._serviceURL)
         return Observable_1.Observable.of(TodoItems);
-        //return TodoItems.map((items => Itodo[]) => <Itodo[]>items)
-        //    .do(data => console.log(JSON.stringify(data)));
-    };
-    TodoService.prototype.addNewTodo = function (model) {
-        TodoItems.push(model);
     };
     TodoService.prototype.getTodoItem = function (id) {
         return this.getTodoItems()
             .map(function (items) { return items.find(function (p) { return p.todoId === id; }); });
+        //let copy = this.getTodoItems()
+        //    .map((items: Itodo[]) => items.find(p => p.todoId === id));
+        //return Object.assign({}, copy);
+    };
+    TodoService.prototype.addNewTodo = function (model) {
+        return TodoItems.push(model); // return new length of an array
     };
     TodoService.prototype.updateTodo = function (model) {
         var idx = TodoItems.indexOf(TodoItems.filter(function (f) { return f.todoId == model.todoId; })[0]);
-        console.log(idx);
-        TodoItems.splice(idx, 1, model);
+        return TodoItems.splice(idx, 1, model).length; // return the count of affected item
     };
     TodoService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [])
     ], TodoService);
     return TodoService;
 }());

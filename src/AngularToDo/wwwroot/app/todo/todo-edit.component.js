@@ -32,16 +32,28 @@ var TodoEditComponent = (function () {
     };
     TodoEditComponent.prototype.getItem = function (id) {
         var _this = this;
-        this._todoService.getTodoItem(id).subscribe(function (item) { return _this.todoModel = item; }, function (error) { return _this.errorMessage = error; });
+        this._todoService.getTodoItem(id).subscribe(function (item) { return _this.todoModel = item; }, function (error) { return _this.Message = error; });
     };
     TodoEditComponent.prototype.EditItem = function () {
-        console.log('in EditItem');
-        console.log(this.todoModel.description);
         this.todoModel.description = this.todoModel.description.trim();
         if (!this.todoModel.description) {
+            this.Message = "Description must not be blank.";
+            this.MessageType = 2;
             return;
         }
-        this._todoService.updateTodo(this.todoModel);
+        console.log('valid: update now.');
+        var result = this._todoService.updateTodo(this.todoModel);
+        if (result > 0) {
+            this.Message = "An Item has been updated";
+            this.MessageType = 1;
+        }
+        else {
+            this.Message = "Error occured!  Try again.";
+            this.MessageType = 2;
+        }
+    };
+    TodoEditComponent.prototype.onBack = function () {
+        this._router.navigate(['/todo']);
     };
     TodoEditComponent = __decorate([
         core_1.Component({

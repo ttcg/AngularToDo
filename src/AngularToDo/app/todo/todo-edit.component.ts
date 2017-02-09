@@ -13,8 +13,10 @@ import { TodoService } from './todo.service';
 })
 export class TodoEditComponent implements OnInit, OnDestroy {
     todoModel: Itodo;
-    errorMessage: string;
     private sub: Subscription;
+
+    Message: string;
+    MessageType: number;
 
     constructor(private _todoService: TodoService,
         private titleService: Title,
@@ -38,15 +40,32 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     getItem(id: number) {
         this._todoService.getTodoItem(id).subscribe(
             item => this.todoModel = item,
-            error => this.errorMessage = <any>error);
+            error => this.Message = <any>error);
     }
 
     EditItem(): void {
-        console.log('in EditItem');
-        console.log(this.todoModel.description);
 
         this.todoModel.description = this.todoModel.description.trim();
-        if (!this.todoModel.description) { return; }
-        this._todoService.updateTodo(this.todoModel);
+        if (!this.todoModel.description) {
+            this.Message = "Description must not be blank.";
+            this.MessageType = 2;
+            return;
+        }
+
+        console.log('valid: update now.');
+        let result = this._todoService.updateTodo(this.todoModel);
+
+        if (result > 0) {
+            this.Message = "An Item has been updated";
+            this.MessageType = 1;
+        }
+        else {
+            this.Message = "Error occured!  Try again.";
+            this.MessageType = 2;
+        }
+    }
+
+    onBack(): void {
+        this._router.navigate(['/todo']);
     }
 }

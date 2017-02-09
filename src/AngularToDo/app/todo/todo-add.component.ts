@@ -18,16 +18,30 @@ export class TodoAddComponent {
     constructor(private _todoService: TodoService, private titleService: Title) {
         this.titleService.setTitle("Add Todo Item")
     }
-
+    
     AddItem(): void {
 
         this.todoModel.description = this.todoModel.description.trim();
+        if (!this.todoModel.description) {
+            this.Message = "Description must not be blank.";
+            this.MessageType = 2;
+            return;
+        }
         this.todoModel.todoId = Math.floor(Math.random() * 100); // generate randomID
-        if (!this.todoModel.description) { return; }
 
-        this._todoService.addNewTodo(this.todoModel);
+        let result = this._todoService.addNewTodo(this.todoModel);
 
-        this.Message = "New Item has been added";
-        this.MessageType = 1;
+        if (result > 0) {
+            this.Message = "New Item has been added";
+            this.MessageType = 1;
+        }
+        else {
+            this.Message = "Error occured!  Try again.";
+            this.MessageType = 2;
+        }
+    }
+
+    onBack(): void {
+        this._router.navigate(['/todo']);
     }
 }

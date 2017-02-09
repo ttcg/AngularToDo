@@ -1,18 +1,21 @@
-<div class='panel panel-primary'>
-    <div class='panel-heading'>
-        Edit Todo Item
+<h2>
+    Edit Todo Item : {{todoModel.todoId}}
+</h2>
+<hr />
+
+<div [ngClass]="{alert: true, 'alert-success': MessageType == 1, 'alert-danger': MessageType == 2 }" *ngIf="Message">
+    {{Message}}
+</div>
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class='col-md-3'>Description:</label>
+        <div class='col-md-6'><input type="text" class="form-control" [(ngModel)]="todoModel.description"></div>
     </div>
 
-    <div class='panel-body'>
-        <div class="form-horizontal col-md-6">
-            <div class="form-group">
-                <label class='col-md-3'>Description:</label>
-                <div class='col-md-6'><input type="text" class="form-control" [(ngModel)]="todoModel.description"></div>
-            </div>
-
-            <div class='form-group'>
-                <div class='col-md-offset-3 col-md-9'><input type="button" class="btn btn-default" (click)="EditItem()" value="Update Todo Item" /></div>
-            </div>
-        </div>
+    <div class='form-group'>
+        <div class='col-md-offset-3 col-md-9'><input type="button" class="btn btn-default" (click)="EditItem()" value="Update Todo Item" /></div>
     </div>
 </div>
+<a class='btn btn-default' (click)='onBack()' style='width:80px'>
+    <i class='glyphicon glyphicon-chevron-left'></i> Back
+</a>
