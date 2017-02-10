@@ -11,7 +11,7 @@ const TodoItems: Itodo[] = [
     { todoId: 12, description: 'Centaur Warrunner' },
     { todoId: 13, description: 'Lay Phyu' },
     { todoId: 14, description: 'Myo Gyi' },
-    { todoId: 15, description: 'Swe Mon' }
+    { todoId: 15, description: 'SM' }
 ]
 
 @Injectable()
