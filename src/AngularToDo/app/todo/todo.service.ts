@@ -9,9 +9,9 @@ import { Itodo } from './todo'
 const TodoItems: Itodo[] = [
     { todoId: 11, description: 'Silencer' },
     { todoId: 12, description: 'Centaur Warrunner' },
-    { todoId: 13, description: 'Lycanthrope' },
-    { todoId: 14, description: 'Sniper' },
-    { todoId: 15, description: 'Lone Druid' }
+    { todoId: 13, description: 'Lay Phyu' },
+    { todoId: 14, description: 'Myo Gyi' },
+    { todoId: 15, description: 'Swe Mon' }
 ]
 
 @Injectable()
@@ -22,8 +22,6 @@ export class TodoService {
     }    
 
     getTodoItem(id: number): Observable<Itodo> {
-        console.log("getTodo called");
-
         return this.getTodoItems()
             .map((items: Itodo[]) => items.find(p => p.todoId === id));
     }

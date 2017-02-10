@@ -15,9 +15,9 @@ require('rxjs/add/observable/of');
 var TodoItems = [
     { todoId: 11, description: 'Silencer' },
     { todoId: 12, description: 'Centaur Warrunner' },
-    { todoId: 13, description: 'Lycanthrope' },
-    { todoId: 14, description: 'Sniper' },
-    { todoId: 15, description: 'Lone Druid' }
+    { todoId: 13, description: 'Lay Phyu' },
+    { todoId: 14, description: 'Myo Gyi' },
+    { todoId: 15, description: 'Swe Mon' }
 ];
 var TodoService = (function () {
     function TodoService() {
@@ -26,7 +26,6 @@ var TodoService = (function () {
         return Observable_1.Observable.of(TodoItems);
     };
     TodoService.prototype.getTodoItem = function (id) {
-        console.log("getTodo called");
         return this.getTodoItems()
             .map(function (items) { return items.find(function (p) { return p.todoId === id; }); });
     };
