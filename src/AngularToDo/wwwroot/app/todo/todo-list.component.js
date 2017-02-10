@@ -34,10 +34,17 @@ var TodoListComponent = (function () {
     TodoListComponent.prototype.gotoDetail = function () {
         this.router.navigate(['/todo', this.selectedItem.todoId]);
     };
+    TodoListComponent.prototype.deleteItem = function (id) {
+        var c = confirm("Are you sure you want to remove this item?");
+        if (c) {
+            this._todoService.deleteTodo(id);
+        }
+    };
     TodoListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            templateUrl: "todo-list.component.html"
+            templateUrl: "todo-list.component.html",
+            styles: [".pointer { cursor: pointer;}"]
         }), 
         __metadata('design:paramtypes', [todo_service_1.TodoService, platform_browser_1.Title, router_1.Router])
     ], TodoListComponent);

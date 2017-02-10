@@ -1,6 +1,6 @@
 <h1>Todo List</h1>
 <a [routerLink]="['/todo', 'add']">Add New Item</a>
-
+<hr />
 <table class="table table-condensed table-striped col-md-6">
     <thead>
         <tr>
@@ -12,9 +12,14 @@
         <tr *ngFor="let todo of todoItems">
             <td>{{todo.description}}</td>
             <td>
-                <a (click)="SelectTodoItem(todo)" style="cursor: pointer;">Select</a> |
+                <a (click)="SelectTodoItem(todo)" class="pointer">Select</a> |
                 <a [routerLink]="['/todo', todo.todoId]">Edit</a> |
-                <a [routerLink]="['/todo', todo.todoId]">Delete</a> 
+                <a (click)="deleteItem(todo.todoId)" class="pointer">Delete</a> 
+            </td>
+        </tr>
+        <tr *ngIf="!todoItems.length">
+            <td colspan="10">
+                <p class="text-danger">There are no items to display.</p>
             </td>
         </tr>
     </tbody>

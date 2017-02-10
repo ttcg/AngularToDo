@@ -32,7 +32,8 @@ var TodoEditComponent = (function () {
     };
     TodoEditComponent.prototype.getItem = function (id) {
         var _this = this;
-        this._todoService.getTodoItem(id).subscribe(function (item) { return _this.todoModel = item; }, function (error) { return _this.Message = error; });
+        //Object.assign clone and decouple todoModel from the ArrayList
+        this._todoService.getTodoItem(id).subscribe(function (item) { return _this.todoModel = Object.assign({}, item); }, function (error) { return _this.Message = error; });
     };
     TodoEditComponent.prototype.EditItem = function () {
         this.todoModel.description = this.todoModel.description.trim();

@@ -2,7 +2,10 @@
     Add Todo Item
 </h2>
 <hr />
-<div [ngClass]="{alert: true, 'alert-success': MessageType == 1, 'alert-danger': MessageType == 2 }" *ngIf="Message">
+<div *ngIf="Message"
+     class="alert"
+     [class.alert-success]="MessageType == 1"
+     [class.alert-danger]="MessageType == 2">
     {{Message}}
 </div>
 <div class="form-horizontal">

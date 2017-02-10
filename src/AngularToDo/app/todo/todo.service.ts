@@ -22,13 +22,10 @@ export class TodoService {
     }    
 
     getTodoItem(id: number): Observable<Itodo> {
+        console.log("getTodo called");
+
         return this.getTodoItems()
             .map((items: Itodo[]) => items.find(p => p.todoId === id));
-
-        //let copy = this.getTodoItems()
-        //    .map((items: Itodo[]) => items.find(p => p.todoId === id));
-
-        //return Object.assign({}, copy);
     }
 
     addNewTodo(model: Itodo): number {
@@ -38,5 +35,10 @@ export class TodoService {
     updateTodo(model: Itodo) : number {
         let idx = TodoItems.indexOf(TodoItems.filter(f => f.todoId == model.todoId)[0]);        
         return TodoItems.splice(idx, 1, model).length; // return the count of affected item
+    }
+
+    deleteTodo(id: number) {
+        let idx = TodoItems.indexOf(TodoItems.filter(f => f.todoId == id)[0]); 
+        return TodoItems.splice(idx, 1);
     }
 }

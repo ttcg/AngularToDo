@@ -7,7 +7,8 @@ import { TodoService } from './todo.service';
 
 @Component({
     moduleId: module.id,
-    templateUrl: "todo-list.component.html"
+    templateUrl: "todo-list.component.html",
+    styles: [".pointer { cursor: pointer;}"]
 })
 export class TodoListComponent implements OnInit {
 
@@ -37,5 +38,12 @@ export class TodoListComponent implements OnInit {
 
     gotoDetail(): void {
         this.router.navigate(['/todo', this.selectedItem.todoId]);
+    }
+
+    deleteItem(id: number): void {
+        var c = confirm("Are you sure you want to remove this item?"); 
+        if (c) {
+            this._todoService.deleteTodo(id);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 import { Itodo } from './todo'
 import { TodoService } from './todo.service';
@@ -15,7 +16,9 @@ export class TodoAddComponent {
     Message: string;
     MessageType: number;
 
-    constructor(private _todoService: TodoService, private titleService: Title) {
+    constructor(private _todoService: TodoService,
+        private titleService: Title,
+        private _router: Router) {
         this.titleService.setTitle("Add Todo Item")
     }
     

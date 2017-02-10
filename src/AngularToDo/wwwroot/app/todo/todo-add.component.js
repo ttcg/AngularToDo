@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var router_1 = require('@angular/router');
 var todo_service_1 = require('./todo.service');
 var TodoAddComponent = (function () {
-    function TodoAddComponent(_todoService, titleService) {
+    function TodoAddComponent(_todoService, titleService, _router) {
         this._todoService = _todoService;
         this.titleService = titleService;
+        this._router = _router;
         // initialize as the blank object
         // if you use Class instead of Iterface, no need to do this
         this.todoModel = { todoId: null, description: '' };
@@ -38,12 +40,15 @@ var TodoAddComponent = (function () {
             this.MessageType = 2;
         }
     };
+    TodoAddComponent.prototype.onBack = function () {
+        this._router.navigate(['/todo']);
+    };
     TodoAddComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             templateUrl: "todo-add.component.html"
         }), 
-        __metadata('design:paramtypes', [todo_service_1.TodoService, platform_browser_1.Title])
+        __metadata('design:paramtypes', [todo_service_1.TodoService, platform_browser_1.Title, router_1.Router])
     ], TodoAddComponent);
     return TodoAddComponent;
 }());

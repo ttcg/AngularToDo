@@ -38,9 +38,11 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     }
 
     getItem(id: number) {
+        //Object.assign clone and decouple todoModel from the ArrayList
         this._todoService.getTodoItem(id).subscribe(
-            item => this.todoModel = item,
+            item => this.todoModel = Object.assign({}, item), 
             error => this.Message = <any>error);
+
     }
 
     EditItem(): void {

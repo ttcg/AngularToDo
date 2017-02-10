@@ -26,11 +26,9 @@ var TodoService = (function () {
         return Observable_1.Observable.of(TodoItems);
     };
     TodoService.prototype.getTodoItem = function (id) {
+        console.log("getTodo called");
         return this.getTodoItems()
             .map(function (items) { return items.find(function (p) { return p.todoId === id; }); });
-        //let copy = this.getTodoItems()
-        //    .map((items: Itodo[]) => items.find(p => p.todoId === id));
-        //return Object.assign({}, copy);
     };
     TodoService.prototype.addNewTodo = function (model) {
         return TodoItems.push(model); // return new length of an array
@@ -38,6 +36,10 @@ var TodoService = (function () {
     TodoService.prototype.updateTodo = function (model) {
         var idx = TodoItems.indexOf(TodoItems.filter(function (f) { return f.todoId == model.todoId; })[0]);
         return TodoItems.splice(idx, 1, model).length; // return the count of affected item
+    };
+    TodoService.prototype.deleteTodo = function (id) {
+        var idx = TodoItems.indexOf(TodoItems.filter(function (f) { return f.todoId == id; })[0]);
+        return TodoItems.splice(idx, 1);
     };
     TodoService = __decorate([
         core_1.Injectable(), 
