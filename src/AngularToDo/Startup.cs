@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
 
-namespace AngularToDoWebAPI
+namespace AngularToDo
 {
     public class Startup
     {

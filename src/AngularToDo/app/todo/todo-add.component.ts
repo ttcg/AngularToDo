@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import { Itodo } from './todo'
@@ -15,7 +16,9 @@ export class TodoAddComponent {
     Message: string;
     MessageType: number;
 
-    constructor(private _todoService: TodoService, private titleService: Title) {
+    constructor(private _todoService: TodoService,
+        private titleService: Title,
+        private _router: Router) {
         this.titleService.setTitle("Add Todo Item")
     }
     
@@ -41,7 +44,7 @@ export class TodoAddComponent {
         }
     }
 
-    //onBack(): void {
-    //    this._router.navigate(['/todo']);
-    //}
+    onBack(): void {
+        this._router.navigate(['/todo']);
+    }
 }
