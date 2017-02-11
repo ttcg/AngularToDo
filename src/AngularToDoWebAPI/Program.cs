@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace AngularToDo
+namespace AngularToDoWebAPI
 {
     public class Program
     {
